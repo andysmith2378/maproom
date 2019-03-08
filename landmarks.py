@@ -289,8 +289,9 @@ if __name__ == "__main__":
     xOffRange = range(-20, 21)
     yOffRange = range(-20, 21)
    
-    Unit.start()   
-   
+    Unit.start()
+
+    """
     for identity, unitObj in Unit.roster.items():
         x, y = unitObj.coordinates
         for xOff in xOffRange:
@@ -305,18 +306,27 @@ if __name__ == "__main__":
                             d = Destination(coord)
                             print d.findPath((x, y), True)
         Destination.savePathLookup()
-   
+   """
+
     pairs = landmarkDict.items()
     for key, coord in pairs:
         d = Destination(key)
         observer2 = Unit(1, coord, key)
         Messenger.savePerfectMap(observer2, testForDouble=False, showMessengers=False)
         del observer2
+        noPathYet = True
+        strikes = 0
         for inkey, incoord in pairs:
             if inkey != key:
-                print inkey
-                print d.findPath(incoord, True)
-                print
+                print inkey, "\t",
+                path = d.findPath(incoord, True)
+                if noPathYet:
+                    if path:
+                        noPathYet = False
+                    else:
+                        if strikes > 1:
+                            break
+                        strikes += 1
         Destination.savePathLookup()
             
 
