@@ -286,12 +286,11 @@ initialNorthumberland = ["Tanbark-on-Guy",
 if __name__ == "__main__":
     from maproom import *
    
-    xOffRange = range(-20, 21)
-    yOffRange = range(-20, 21)
+    xOffRange = range(-25, 26)
+    yOffRange = range(-25, 26)
    
     Unit.start()
 
-    """
     for identity, unitObj in Unit.roster.items():
         x, y = unitObj.coordinates
         for xOff in xOffRange:
@@ -306,7 +305,6 @@ if __name__ == "__main__":
                             d = Destination(coord)
                             print d.findPath((x, y), True)
         Destination.savePathLookup()
-   """
 
     pairs = landmarkDict.items()
     for key, coord in pairs:
